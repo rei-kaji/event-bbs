@@ -11,3 +11,74 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+li{
+  display: inline;
+}
+
+.event_info_group{
+  display: flex;
+  align-items:stretch;
+}
+
+.event_info_date{
+  list-style: none;
+  flex-grow: 1;
+}
+
+/* 
+.event_info_date::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-image:url(https://source.unsplash.com/random);
+  background-size: contain;
+  vertical-align: middle;
+ } */
+
+.event_info_count{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.event_info_updatedate{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.event_status{
+  display: flex;
+  align-items:stretch;
+  margin: 0 5%;
+}
+.event_status_title{
+  padding: 5% 0;
+  color:  #000;
+  margin:  10px 10px 10px 0px;
+  text-align: left;
+  flex-grow: 1;    
+}
+
+.event_status_input{
+  padding: 5% 0;
+  color:  #000;               /* 文字色 */
+  margin:  10px;              /* 外側の余白 */
+  border-radius:  5px;        /* 角丸指定 */
+  font-size: 5px;            /* 文字サイズ指定 */
+  text-align:  center;        /* 文字中央揃え */
+}
+
+.event_status_item{
+  padding: 5% 0;
+  color:  #000;               /* 文字色 */
+  margin:  10px;              /* 外側の余白 */
+  border-radius:  5px;        /* 角丸指定 */
+  font-size: 15px;            /* 文字サイズ指定 */
+  text-align:  center;        /* 文字中央揃え */
+}
+
+.event_info_updatebutton{
+  display: flex;
+  justify-content:center
+}

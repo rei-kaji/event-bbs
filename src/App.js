@@ -1,7 +1,11 @@
+import React, { useState } from "react";
+import EventDetail from "./components/EventDetail";
+
 function App() {
   return (
     <div className="App">
-      <p>soccer-event-bbs</p>
+      <h1>soccer-event-bbs</h1>
+      <EventDetail />
     </div>
   );
 }
