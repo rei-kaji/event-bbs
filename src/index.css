@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color:lightgray
 }
 
 code {
@@ -26,17 +27,6 @@ li{
   flex-grow: 1;
 }
 
-/* 
-.event_info_date::before {
-  content: "";
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background-image:url(https://source.unsplash.com/random);
-  background-size: contain;
-  vertical-align: middle;
- } */
-
 .event_info_count{
   display: flex;
   justify-content: flex-end;
@@ -47,6 +37,19 @@ li{
   justify-content: flex-end;
 }
 
+.event_info_icon{
+  vertical-align:top;
+}
+
+.event_info_span{
+  display:inline-block;
+  line-height:24px;
+}
+
+.event_detail{
+  background-color: #0F1F3D;
+  color: #fff;
+}
 .event_status{
   display: flex;
   align-items:stretch;
@@ -62,23 +65,25 @@ li{
 
 .event_status_input{
   padding: 5% 0;
-  color:  #000;               /* 文字色 */
-  margin:  10px;              /* 外側の余白 */
-  border-radius:  5px;        /* 角丸指定 */
-  font-size: 5px;            /* 文字サイズ指定 */
-  text-align:  center;        /* 文字中央揃え */
+  width: 50px;
+  color:  #000;        
+  margin:  10px;          
+  border-radius:  5px;   
+  font-size: 100%;       
+  text-align:  center;    
 }
 
 .event_status_item{
   padding: 5% 0;
-  color:  #000;               /* 文字色 */
-  margin:  10px;              /* 外側の余白 */
-  border-radius:  5px;        /* 角丸指定 */
-  font-size: 15px;            /* 文字サイズ指定 */
-  text-align:  center;        /* 文字中央揃え */
+  color:  #000;      
+  margin:  10px;         
+  border-radius:  5px;  
+  font-size: 15px;      
+  text-align:  center; 
 }
 
 .event_info_updatebutton{
   display: flex;
-  justify-content:center
+  justify-content:center;
+  padding-bottom: 25px;
 }
