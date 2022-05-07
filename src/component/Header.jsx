@@ -21,7 +21,12 @@ export default function Header() {
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             Vamos
           </Typography>
-          <Button color='inherit'>Contact</Button>
+          <a
+            href='mailto:sample@sample.com'
+            style={{ textDecoration: 'none', color: 'white' }}
+          >
+            <Button color='inherit'>Contact</Button>
+          </a>
         </Toolbar>
       </AppBar>
     </Box>
