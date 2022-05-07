@@ -1,24 +1,18 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import pic from './img/travel-nomades-JO19K0HDDXI-unsplash.jpg';
+import pic from './img/lars-bo-nielsen-xewH-utuFYA-unsplash.jpg';
+import CardMedia from '@mui/material/CardMedia';
 
 function Image() {
   return (
     <Container maxWidth='sx'>
-      <Box
-        sx={{ bgcolor: '#cfe8fc', height: '50vh', m: 2 }}
-        display='flex'
-        alignItems='center'
-        justifyContent='center'
-      >
-        <img
-          src={pic}
-          srcSet={pic}
-          alt='ttt'
-          loading='lazy'
+      <Box sx={{ bgcolor: '#cfe8fc', height: '50vh', m: 2 }}>
+        <CardMedia
+          component='img'
           height='100%'
-          margin='auto'
+          image={pic}
+          alt='green iguana'
         />
       </Box>
     </Container>
