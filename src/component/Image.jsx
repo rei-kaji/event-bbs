@@ -7,7 +7,7 @@ import CardMedia from '@mui/material/CardMedia';
 function Image() {
   return (
     <Container maxWidth='sx'>
-      <Box sx={{ bgcolor: '#cfe8fc', height: '50vh', m: 2 }}>
+      <Box sx={{ height: '50vh', m: 2 }}>
         <CardMedia
           component='img'
           height='100%'
