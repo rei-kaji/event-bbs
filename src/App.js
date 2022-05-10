@@ -4,7 +4,6 @@ import EventDetail from "./components/EventDetail";
 function App() {
   return (
     <div className="App">
-      <h1>soccer-event-bbs</h1>
       <EventDetail 
         name="EventNameA"
         img="https://source.unsplash.com/random"
@@ -14,7 +13,7 @@ function App() {
         genre="soccer"
         attendees="100"
         last_update="xx:xx"
-        detail="xxxxxxxXxxxxxxxx"
+        detail="This event is standing on Robson street. There are a lot of goals and people everyday. So, if you want to play soccer, you should come here.This event is standing on Robson street. There are a lot of goals and people everyday. So, if you want to play soccer, you should come here.This event is standing on Robson street. There are a lot of goals and people everyday. So, if you want to play soccer, you should come here."
       />
     </div>
   );

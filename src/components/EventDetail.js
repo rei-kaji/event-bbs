@@ -67,13 +67,9 @@ export default function EventDetail(props){
                 {/* End hero unit */}
                 <Grid xs={12} sm={6} md={4}>
                         <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-                            <CardContent className="event_detail"  sx={{ flexGrow: 1 }} style={{paddingTop:0,paddingBottom:0}}>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    <h3>Explanation of this Event</h3>
-                                    <p>
-                                        {props.detail}
-                                    </p>
-                                </Typography>
+                            <CardContent className="event_detail"  sx={{ flexGrow: 1 }}>
+                                <Typography gutterBottom variant="h4">Explanation of {props.name}</Typography>
+                                <Typography variant="p">{props.detail}</Typography>
                             </CardContent>
                         </Card>
                     </Grid>
