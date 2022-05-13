@@ -10,9 +10,6 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import RoomIcon from '@mui/icons-material/Room';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 
-
-const cards = [1];
-
 export default function EventDetail(props){
     return(
         <div>
