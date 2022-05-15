@@ -9,7 +9,6 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import pic from '../Img/travel-nomades-JO19K0HDDXI-unsplash.jpg';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
@@ -50,15 +49,22 @@ function Events(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Link to='/detail' style={{ textDecoration: 'none' }}>
+      <Link to={props.link} style={{ textDecoration: 'none' }}>
         <Container maxWidth='sx'>
           <Box sx={{ m: 2 }}>
             <Card>
               <CardActionArea>
+                <Typography
+                  sx={{ p: 1, m: 0, fontWeight: 'bold' }}
+                  paragraph={true}
+                  variant='h3'
+                >
+                  {props.title}
+                </Typography>
                 <CardMedia
                   component='img'
                   height='140'
-                  image={pic}
+                  image={props.img}
                   alt='green iguana'
                 />
                 <CardContent>
@@ -71,11 +77,11 @@ function Events(props) {
                           className={classes.wrapIcon}
                         >
                           <AccessTimeIcon sx={{ mr: '1rem' }} />
-                          Apr 15th
+                          {props.date}
                         </Typography>
                       </Grid>
                       <Grid item xs={6}>
-                        <Typography variant='h3'>Attendees 8</Typography>
+                        <Typography variant='h3'>Attendees {props.attendees}</Typography>
                       </Grid>
                       <Grid item xs={6}>
                         <Typography
@@ -84,7 +90,7 @@ function Events(props) {
                           className={classes.wrapIcon}
                         >
                           <LocationOnIcon sx={{ mr: '1rem' }} />
-                          Livingstone Park
+                          <Link to={props.adressLink}>{props.adress}</Link>
                         </Typography>
                         <Typography
                           variant='body2'
@@ -100,7 +106,7 @@ function Events(props) {
                           Last updated :
                         </Typography>
                         <Typography variant='body2' color='text.secondary'>
-                          1pm 22/May/2022
+                          {props.lastUpdate}
                         </Typography>
                       </Grid>
                     </Grid>
