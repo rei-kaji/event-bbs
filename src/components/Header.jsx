@@ -5,6 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
@@ -19,7 +20,7 @@ export default function Header() {
             sx={{ mr: 2 }}
           ></IconButton>
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-            Vamos
+            <Link to='' style={{ textDecoration: 'none', color: '#fff' }}>Vamos</Link>
           </Typography>
           <a
             href='mailto:sample@sample.com'
