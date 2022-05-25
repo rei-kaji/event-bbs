@@ -9,7 +9,6 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import { makeStyles } from '@material-ui/core/styles';
@@ -76,22 +75,16 @@ function Events(props) {
                           component='div'
                           className={classes.wrapIcon}
                         >
-                          <AccessTimeIcon sx={{ mr: '1rem' }} />
-                          {props.date}
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Typography variant='h3'>Attendees {props.attendees}</Typography>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Typography
-                          variant='body2'
-                          color='text.secondary'
-                          className={classes.wrapIcon}
-                        >
                           <LocationOnIcon sx={{ mr: '1rem' }} />
                           <Link to={props.adressLink}>{props.adress}</Link>
                         </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
+                        <Typography variant='h3'>
+                          Attendees {props.attendees}
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={6}>
                         <Typography
                           variant='body2'
                           color='text.secondary'
