@@ -20,7 +20,9 @@ export default function Header() {
             sx={{ mr: 2 }}
           ></IconButton>
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-            <Link to='' style={{ textDecoration: 'none', color: '#fff' }}>Vamos</Link>
+            <Link to='' style={{ textDecoration: 'none', color: '#fff' }}>
+              Vamos
+            </Link>
           </Typography>
           <a
             href='mailto:sample@sample.com'
