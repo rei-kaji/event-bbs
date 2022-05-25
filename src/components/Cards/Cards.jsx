@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -13,6 +13,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+
+import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   wrapIcon: {
@@ -42,19 +44,23 @@ theme.typography.body2 = {
     fontSize: '1.2rem',
   },
 };
-
-function Events(props) {
+function Cards(props) {
   const classes = useStyles();
+  const { id } = useParams();
+  const [event, setEvent] = useState('');
+
+  useEffect(() => {
+    const res = props.EventDataList.filter((event) => {
+      return event.id === Number(id);
+    });
+    setEvent(res[0]);
+  }, [props, id]);
 
   return (
     <ThemeProvider theme={theme}>
-      {props.EventDataList.map((event, index) => {
+      {event?.detail?.map((event, index) => {
         return (
-          <Link
-            to={`/detail/${index}`}
-            style={{ textDecoration: 'none' }}
-            key={index}
-          >
+          <Link to='/' style={{ textDecoration: 'none' }} key={index}>
             <Container maxWidth='sx'>
               <Box sx={{ m: 2 }}>
                 <Card>
@@ -122,4 +128,4 @@ function Events(props) {
   );
 }
 
-export default Events;
+export default Cards;
