@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -10,7 +10,8 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Explanation from '../Explanation.jsx';
-import Events from '../Events/Events.jsx';
+import Cards from '../Cards/Cards';
+import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   wrapIcon: {
@@ -33,21 +34,20 @@ theme.typography.h3 = {
 
 function Detail(props) {
   const classes = useStyles();
+  const { id } = useParams();
+  const [event, setEvent] = useState('');
+
+  useEffect(() => {
+    const res = props.EventDataList.filter((event) => {
+      return event.id === Number(id);
+    });
+    setEvent(res[0]);
+  }, [props, id]);
 
   return (
     <ThemeProvider theme={theme}>
-      <Events
-        title={props.title}
-        img={props.img}
-        eventName={props.eventName}
-        link={props.link}
-        adress={props.adress}
-        adressLink={props.adressLink}
-        attendees={props.attendees}
-        lastUpdate={props.lastUpdate}
-      />
-      <Explanation explanation={props.explanation} />
-      {/* Event Attendees Count Input */}
+      <Cards EventDetail={event} />
+      <Explanation explanation={event.explanation} />
       <Container maxWidth='sx'>
         <Box sx={{ height: 'auto', m: 2 }}>
           <Card>
@@ -79,7 +79,6 @@ function Detail(props) {
           </Card>
         </Box>
       </Container>
-      {/* Event Detail Update */}
       <Container sx={{ alignItems: 'center' }}>
         <Grid
           container

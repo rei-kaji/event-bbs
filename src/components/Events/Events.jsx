@@ -48,68 +48,76 @@ function Events(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Link to={props.link} style={{ textDecoration: 'none' }}>
-        <Container maxWidth='sx'>
-          <Box sx={{ m: 2 }}>
-            <Card>
-              <CardActionArea>
-                <Typography
-                  sx={{ p: 1, m: 0, fontWeight: 'bold' }}
-                  paragraph={true}
-                  variant='h3'
-                >
-                  {props.title}
-                </Typography>
-                <CardMedia
-                  component='img'
-                  height='140'
-                  image={props.img}
-                  alt='green iguana'
-                />
-                <CardContent>
-                  <Box sx={{ flexGrow: 1 }}>
-                    <Grid container spacing={2}>
-                      <Grid item xs={6}>
-                        <Typography
-                          variant='h3'
-                          component='div'
-                          className={classes.wrapIcon}
-                        >
-                          <LocationOnIcon sx={{ mr: '1rem' }} />
-                          <Link to={props.adressLink}>{props.adress}</Link>
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Typography variant='h3'>
-                          Attendees {props.attendees}
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Typography
-                          variant='body2'
-                          color='text.secondary'
-                          className={classes.wrapIcon}
-                        >
-                          <SportsSoccerIcon sx={{ mr: '1rem' }} />
-                          {props.eventName}
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={6}>
-                        <Typography variant='body2' color='text.secondary'>
-                          Last updated :
-                        </Typography>
-                        <Typography variant='body2' color='text.secondary'>
-                          {props.lastUpdate}
-                        </Typography>
-                      </Grid>
-                    </Grid>
-                  </Box>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Box>
-        </Container>
-      </Link>
+      {props.EventDataList.map((event, index) => {
+        return (
+          <Link
+            to={`/detail/${index}`}
+            style={{ textDecoration: 'none' }}
+            key={index}
+          >
+            <Container maxWidth='sx'>
+              <Box sx={{ m: 2 }}>
+                <Card>
+                  <CardActionArea>
+                    <Typography
+                      sx={{ p: 1, m: 0, fontWeight: 'bold' }}
+                      paragraph={true}
+                      variant='h3'
+                    >
+                      {event.title}
+                    </Typography>
+                    <CardMedia
+                      component='img'
+                      height='140'
+                      image={event.img}
+                      alt='green iguana'
+                    />
+                    <CardContent>
+                      <Box sx={{ flexGrow: 1 }}>
+                        <Grid container spacing={2}>
+                          <Grid item xs={6}>
+                            <Typography
+                              variant='h3'
+                              component='div'
+                              className={classes.wrapIcon}
+                            >
+                              <LocationOnIcon sx={{ mr: '1rem' }} />
+                              {event.adress}
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <Typography variant='h3'>
+                              Attendees {event.attendees}
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <Typography
+                              variant='body2'
+                              color='text.secondary'
+                              className={classes.wrapIcon}
+                            >
+                              <SportsSoccerIcon sx={{ mr: '1rem' }} />
+                              {event.eventName}
+                            </Typography>
+                          </Grid>
+                          <Grid item xs={6}>
+                            <Typography variant='body2' color='text.secondary'>
+                              Last updated :
+                            </Typography>
+                            <Typography variant='body2' color='text.secondary'>
+                              {event.lastUpdate}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Box>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Box>
+            </Container>
+          </Link>
+        );
+      })}
     </ThemeProvider>
   );
 }
