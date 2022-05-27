@@ -10,7 +10,8 @@ import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Explanation from '../Explanation.jsx';
-import Cards from '../Cards/Cards.jsx';
+import Cards from '../Cards/Cards';
+import { useParams } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   wrapIcon: {
@@ -33,11 +34,20 @@ theme.typography.h3 = {
 
 function Detail(props) {
   const classes = useStyles();
+  const { id } = useParams();
+  const [event, setEvent] = useState('');
+
+  useEffect(() => {
+    const res = props.EventDataList.filter((event) => {
+      return event.id === Number(id);
+    });
+    setEvent(res[0]);
+  }, [props, id]);
 
   return (
     <ThemeProvider theme={theme}>
-      {/* <Cards EventDataList={props.EventDataList} /> */}
-      <Explanation explanation={props.explanation} />
+      <Cards EventDetail={event} />
+      <Explanation explanation={event.explanation} />
       <Container maxWidth='sx'>
         <Box sx={{ height: 'auto', m: 2 }}>
           <Card>
