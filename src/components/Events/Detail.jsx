@@ -12,6 +12,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Explanation from '../Explanation.jsx';
 import Cards from '../Cards/Cards';
 import { useParams } from 'react-router-dom';
+import {db} from '../../firebase';
+import {
+  doc,
+  updateDoc
+} from "firebase/firestore";
 
 const useStyles = makeStyles(() => ({
   wrapIcon: {
@@ -32,10 +37,23 @@ theme.typography.h3 = {
   },
 };
 
+
+function updateEvent(countNumber,documentId){
+
+  const washingtonRef = doc(db, "number1", documentId);
+
+  updateDoc(washingtonRef, {
+    attendees: countNumber
+  });
+}
+
 function Detail(props) {
   const classes = useStyles();
   const { id } = useParams();
   const [event, setEvent] = useState('');
+  // const navigate = useNavigate()
+  let [count, setCount] = useState(0);
+
 
   useEffect(() => {
     const res = props.EventDataList.filter((event) => {
@@ -68,6 +86,10 @@ function Detail(props) {
                     id='filled-number'
                     label='people'
                     type='number'
+                    value={count}
+                    onChange={e=>{
+                      setCount(e.target.value)
+                    }}
                     InputLabelProps={{
                       shrink: true,
                     }}
@@ -93,6 +115,17 @@ function Detail(props) {
               maxWidth: '200px',
               minWidth: '200px',
               backgroundColor: '#AE303A',
+            }}
+            // Update attendees count of firestore
+            onClick={() => {
+              if(count === ""){
+                // This second paramater should change to 'props.documentId'.
+                updateEvent(0,"TTrBeIyfTnRjVASXNmMg")
+              }
+              else{
+                // This second paramater should change to 'props.documentId'.
+                updateEvent(count,"TTrBeIyfTnRjVASXNmMg")
+              }
             }}
           >
             Update
