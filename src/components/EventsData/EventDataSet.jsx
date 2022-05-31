@@ -31,23 +31,21 @@ function EventDataSet() {
     });
   }, []);
 
-  {
-    posts.map((post) =>
-      setDataList([
-        {
-          id: 0,
-          img: image0,
-          explanation: post.explanation,
-          eventName: post.eventName,
-          link: '',
-          adress: post.adress,
-          adressLink: post.adressLink,
-          attendees: post.attendees,
-          lastUpdate: post.lastUpdate,
-        },
-      ])
-    );
-  }
+  posts.map((post) =>
+    setDataList([
+      {
+        id: 0,
+        img: image0,
+        explanation: post.explanation,
+        eventName: post.eventName,
+        link: '',
+        adress: post.adress,
+        adressLink: post.adressLink,
+        attendees: post.attendees,
+        lastUpdate: post.lastUpdate,
+      },
+    ])
+  );
   return dataList;
 }
 export { EventDataSet };
