@@ -1,7 +1,7 @@
 import image0 from '../img/travel-nomades-JO19K0HDDXI-unsplash.jpg';
 import { EventDataSet } from './EventDataSet';
 
-const dataList = EventDataSet();
+const dataList = { EventDataSet };
 console.log(dataList);
 
 export const EventDataList = [
