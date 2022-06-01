@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Explanation from '../Explanation.jsx';
 import Cards from '../Cards/Cards';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {db} from '../../firebase';
 import {
   doc,
@@ -51,8 +51,9 @@ function Detail(props) {
   const classes = useStyles();
   const { id } = useParams();
   const [event, setEvent] = useState('');
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   let [count, setCount] = useState(0);
+
 
 
   useEffect(() => {
@@ -121,10 +122,12 @@ function Detail(props) {
               if(count === ""){
                 // This second paramater should change to 'props.documentId'.
                 updateEvent(0,"TTrBeIyfTnRjVASXNmMg")
+                navigate('/')
               }
               else{
                 // This second paramater should change to 'props.documentId'.
                 updateEvent(count,"TTrBeIyfTnRjVASXNmMg")
+                navigate('/')
               }
             }}
           >
