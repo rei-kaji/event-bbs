@@ -15,7 +15,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import {db} from '../../firebase';
 import {
   doc,
-  updateDoc
+  updateDoc,
+  serverTimestamp
 } from "firebase/firestore";
 
 const useStyles = makeStyles(() => ({
@@ -38,12 +39,16 @@ theme.typography.h3 = {
 };
 
 
+
+
+
 function updateEvent(countNumber,documentId){
 
   const washingtonRef = doc(db, "number1", documentId);
 
   updateDoc(washingtonRef, {
-    attendees: countNumber
+    attendees: countNumber,
+    lastUpdate: serverTimestamp()
   });
 }
 
