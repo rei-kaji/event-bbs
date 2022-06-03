@@ -45,10 +45,11 @@ theme.typography.body2 = {
 
 function Events(props) {
   const classes = useStyles();
+  console.log(props.dbData);
 
   return (
     <ThemeProvider theme={theme}>
-      {props.EventDataList.map((event, index) => {
+      {props.dbData.map((event, index) => {
         return (
           <Link
             to={`/detail/${index}`}
@@ -64,7 +65,7 @@ function Events(props) {
                       paragraph={true}
                       variant='h3'
                     >
-                      {event.title}
+                      {event.eventName}
                     </Typography>
                     <CardMedia
                       component='img'
@@ -105,7 +106,7 @@ function Events(props) {
                               Last updated :
                             </Typography>
                             <Typography variant='body2' color='text.secondary'>
-                              {event.lastUpdate}
+                              {/* {event.lastUpdate} */}
                             </Typography>
                           </Grid>
                         </Grid>
