@@ -46,7 +46,7 @@ function Cards(props) {
   return (
     <ThemeProvider theme={theme}>
       <a
-        href={props.EventDetail.adressLink}
+        href={props.EventDetail.addressLink}
         target='_blank'
         rel='noopener noreferrer'
         style={{ textDecoration: 'none' }}
@@ -78,7 +78,7 @@ function Cards(props) {
                           className={classes.wrapIcon}
                         >
                           <LocationOnIcon sx={{ mr: '1rem' }} />
-                          {props.EventDetail.eventName}
+                          {props.EventDetail.address}
                         </Typography>
                       </Grid>
                       <Grid item xs={6}>
