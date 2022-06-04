@@ -82,7 +82,7 @@ function Events(props) {
                               className={classes.wrapIcon}
                             >
                               <LocationOnIcon sx={{ mr: '1rem' }} />
-                              {event.eventName}
+                              {event.address}
                             </Typography>
                           </Grid>
                           <Grid item xs={6}>
