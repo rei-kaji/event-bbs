@@ -48,7 +48,7 @@ function Events(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      {props.EventDataList.map((event, index) => {
+      {props.dbData.map((event, index) => {
         return (
           <Link
             to={`/detail/${index}`}
@@ -64,13 +64,13 @@ function Events(props) {
                       paragraph={true}
                       variant='h3'
                     >
-                      {event.title}
+                      {event.eventName}
                     </Typography>
                     <CardMedia
                       component='img'
                       height='140'
                       image={event.img}
-                      alt='green iguana'
+                      alt=''
                     />
                     <CardContent>
                       <Box sx={{ flexGrow: 1 }}>
@@ -82,7 +82,7 @@ function Events(props) {
                               className={classes.wrapIcon}
                             >
                               <LocationOnIcon sx={{ mr: '1rem' }} />
-                              {event.adress}
+                              {event.eventName}
                             </Typography>
                           </Grid>
                           <Grid item xs={6}>
@@ -97,7 +97,7 @@ function Events(props) {
                               className={classes.wrapIcon}
                             >
                               <SportsSoccerIcon sx={{ mr: '1rem' }} />
-                              {event.eventName}
+                              {event.jenre}
                             </Typography>
                           </Grid>
                           <Grid item xs={6}>
@@ -105,7 +105,7 @@ function Events(props) {
                               Last updated :
                             </Typography>
                             <Typography variant='body2' color='text.secondary'>
-                              {event.lastUpdate}
+                              {/* {event.lastUpdate} */}
                             </Typography>
                           </Grid>
                         </Grid>

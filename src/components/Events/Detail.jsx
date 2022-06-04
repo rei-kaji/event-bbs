@@ -11,7 +11,9 @@ import TextField from '@mui/material/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Explanation from '../Explanation.jsx';
 import Cards from '../Cards/Cards';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { db } from '../../firebase';
+import { doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 
 const useStyles = makeStyles(() => ({
   wrapIcon: {
@@ -32,13 +34,24 @@ theme.typography.h3 = {
   },
 };
 
+function updateEvent(countNumber, documentId) {
+  const washingtonRef = doc(db, 'number1', documentId);
+
+  updateDoc(washingtonRef, {
+    attendees: countNumber,
+    lastUpdate: serverTimestamp(),
+  });
+}
+
 function Detail(props) {
   const classes = useStyles();
   const { id } = useParams();
   const [event, setEvent] = useState('');
+  const navigate = useNavigate();
+  let [count, setCount] = useState(0);
 
   useEffect(() => {
-    const res = props.EventDataList.filter((event) => {
+    const res = props.dbData.filter((event) => {
       return event.id === Number(id);
     });
     setEvent(res[0]);
@@ -68,6 +81,10 @@ function Detail(props) {
                     id='filled-number'
                     label='people'
                     type='number'
+                    value={count}
+                    onChange={(e) => {
+                      setCount(e.target.value);
+                    }}
                     InputLabelProps={{
                       shrink: true,
                     }}
@@ -93,6 +110,18 @@ function Detail(props) {
               maxWidth: '200px',
               minWidth: '200px',
               backgroundColor: '#AE303A',
+            }}
+            // Update attendees count of firestore
+            onClick={() => {
+              if (count === '') {
+                // This second paramater should change to 'props.documentId'.
+                updateEvent(0, event.id.toString());
+                navigate('/');
+              } else {
+                // This second paramater should change to 'props.documentId'.
+                updateEvent(count, event.id.toString());
+                navigate('/');
+              }
             }}
           >
             Update
