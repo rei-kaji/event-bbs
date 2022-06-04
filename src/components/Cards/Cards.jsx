@@ -60,12 +60,12 @@ function Cards(props) {
                   paragraph={true}
                   variant='h3'
                 >
-                  {props.EventDetail.title}
+                  {props.EventDetail.eventName}
                 </Typography>
                 <CardMedia
                   component='img'
                   height='140'
-                  image={props.EventDetail.img}
+                  image={props.img}
                   alt='green iguana'
                 />
                 <CardContent>
@@ -78,7 +78,7 @@ function Cards(props) {
                           className={classes.wrapIcon}
                         >
                           <LocationOnIcon sx={{ mr: '1rem' }} />
-                          {props.EventDetail.adress}
+                          {props.EventDetail.eventName}
                         </Typography>
                       </Grid>
                       <Grid item xs={6}>
@@ -93,7 +93,7 @@ function Cards(props) {
                           className={classes.wrapIcon}
                         >
                           <SportsSoccerIcon sx={{ mr: '1rem' }} />
-                          {props.EventDetail.eventName}
+                          {props.EventDetail.jenre}
                         </Typography>
                       </Grid>
                       <Grid item xs={6}>
@@ -101,7 +101,7 @@ function Cards(props) {
                           Last updated :
                         </Typography>
                         <Typography variant='body2' color='text.secondary'>
-                          {props.EventDetail.lastUpdate}
+                          {props.lastUpdate}
                         </Typography>
                       </Grid>
                     </Grid>

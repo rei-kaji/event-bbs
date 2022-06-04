@@ -12,12 +12,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Explanation from '../Explanation.jsx';
 import Cards from '../Cards/Cards';
 import { useParams, useNavigate } from 'react-router-dom';
-import {db} from '../../firebase';
-import {
-  doc,
-  updateDoc,
-  serverTimestamp
-} from "firebase/firestore";
+import { db } from '../../firebase';
+import { doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 
 const useStyles = makeStyles(() => ({
   wrapIcon: {
@@ -38,17 +34,12 @@ theme.typography.h3 = {
   },
 };
 
-
-
-
-
-function updateEvent(countNumber,documentId){
-
-  const washingtonRef = doc(db, "number1", documentId);
+function updateEvent(countNumber, documentId) {
+  const washingtonRef = doc(db, 'number1', documentId);
 
   updateDoc(washingtonRef, {
     attendees: countNumber,
-    lastUpdate: serverTimestamp()
+    lastUpdate: serverTimestamp(),
   });
 }
 
@@ -56,13 +47,11 @@ function Detail(props) {
   const classes = useStyles();
   const { id } = useParams();
   const [event, setEvent] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   let [count, setCount] = useState(0);
 
-
-
   useEffect(() => {
-    const res = props.EventDataList.filter((event) => {
+    const res = props.dbData.filter((event) => {
       return event.id === Number(id);
     });
     setEvent(res[0]);
@@ -93,8 +82,8 @@ function Detail(props) {
                     label='people'
                     type='number'
                     value={count}
-                    onChange={e=>{
-                      setCount(e.target.value)
+                    onChange={(e) => {
+                      setCount(e.target.value);
                     }}
                     InputLabelProps={{
                       shrink: true,
@@ -124,15 +113,14 @@ function Detail(props) {
             }}
             // Update attendees count of firestore
             onClick={() => {
-              if(count === ""){
+              if (count === '') {
                 // This second paramater should change to 'props.documentId'.
-                updateEvent(0,"TTrBeIyfTnRjVASXNmMg")
-                navigate('/')
-              }
-              else{
+                updateEvent(0, event.id.toString());
+                navigate('/');
+              } else {
                 // This second paramater should change to 'props.documentId'.
-                updateEvent(count,"TTrBeIyfTnRjVASXNmMg")
-                navigate('/')
+                updateEvent(count, event.id.toString());
+                navigate('/');
               }
             }}
           >

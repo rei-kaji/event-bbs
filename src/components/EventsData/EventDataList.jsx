@@ -27,4 +27,17 @@ export const EventDataList = [
     attendees: '5',
     lastUpdate: 'xx:xx',
   },
+  {
+    id: 2,
+    img: image0,
+    title: 'Hockey',
+    explanation:
+      "Welcome to Vamos! This app tells you how many people are playing the sports which you want to play rigth now. Just check this app out before going to seek buddies playing with. You don't need to physically go out anymore.",
+    eventName: 'BasketBall',
+    link: '',
+    adress: 'taeogjsfg',
+    adressLink: 'https://www.google.com/maps/search/?api=1&parameters',
+    attendees: '5',
+    lastUpdate: 'xx:xx',
+  },
 ];

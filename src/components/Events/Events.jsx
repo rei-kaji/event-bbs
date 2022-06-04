@@ -45,7 +45,6 @@ theme.typography.body2 = {
 
 function Events(props) {
   const classes = useStyles();
-  console.log(props.dbData);
 
   return (
     <ThemeProvider theme={theme}>
@@ -71,7 +70,7 @@ function Events(props) {
                       component='img'
                       height='140'
                       image={event.img}
-                      alt='green iguana'
+                      alt=''
                     />
                     <CardContent>
                       <Box sx={{ flexGrow: 1 }}>
@@ -83,7 +82,7 @@ function Events(props) {
                               className={classes.wrapIcon}
                             >
                               <LocationOnIcon sx={{ mr: '1rem' }} />
-                              {event.adress}
+                              {event.eventName}
                             </Typography>
                           </Grid>
                           <Grid item xs={6}>
@@ -98,7 +97,7 @@ function Events(props) {
                               className={classes.wrapIcon}
                             >
                               <SportsSoccerIcon sx={{ mr: '1rem' }} />
-                              {event.eventName}
+                              {event.jenre}
                             </Typography>
                           </Grid>
                           <Grid item xs={6}>

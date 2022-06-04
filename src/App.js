@@ -33,7 +33,7 @@ function App() {
         <Route index element={<Home dbData={posts} />} />
         <Route
           path='/detail/:id'
-          element={<Detail EventDataList={EventDataList} />}
+          element={<Detail EventDataList={EventDataList} dbData={posts} />}
         />
       </Routes>
     </div>
