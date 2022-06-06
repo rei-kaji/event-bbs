@@ -15,6 +15,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
 import { doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import Spinner from '../Spinner/Spinner';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({
   wrapIcon: {
@@ -109,6 +110,8 @@ function Detail(props) {
             >
               <Button
                 variant='contained'
+                component={Link}
+                to='/'
                 style={{
                   maxWidth: '200px',
                   minWidth: '200px',
@@ -116,14 +119,10 @@ function Detail(props) {
                 }}
                 // Update attendees count of firestore
                 onClick={() => {
-                  if (count === '') {
-                    // This second paramater should change to 'props.documentId'.
+                  if (count === 0) {
                     updateEvent(0, event?.id.toString());
-                    navigate('/');
                   } else {
-                    // This second paramater should change to 'props.documentId'.
                     updateEvent(count, event?.id.toString());
-                    navigate('/');
                   }
                 }}
               >
