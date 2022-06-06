@@ -11,6 +11,9 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import { makeStyles } from '@material-ui/core/styles';
 import dayjs from 'dayjs';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+
+dayjs.extend(isSameOrAfter);
 
 const useStyles = makeStyles(() => ({
   wrapIcon: {
@@ -43,8 +46,13 @@ theme.typography.body2 = {
 
 function Cards(props) {
   const classes = useStyles();
-  let date = dayjs(props?.EventDetail?.lastUpdate.toDate()).format('DD/MM/YY HH:mm');
-  // console.log(date);
+  let date = dayjs(props?.EventDetail?.lastUpdate.toDate());
+  let attendeesCount = 0
+  let beforeTwoHour = dayjs().add(-2,'h');
+
+  if(date.isSameOrAfter(beforeTwoHour)){
+    attendeesCount = props?.EventDetail?.attendees;
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -86,7 +94,7 @@ function Cards(props) {
                       </Grid>
                       <Grid item xs={6}>
                         <Typography variant='h3'>
-                          Attendees {props?.EventDetail?.attendees}
+                          Attendees {attendeesCount}
                         </Typography>
                       </Grid>
                       <Grid item xs={6}>
@@ -104,7 +112,7 @@ function Cards(props) {
                           Last updated :
                         </Typography>
                         <Typography variant='body2' color='text.secondary'>
-                          {date}
+                          {date.format('DD/MM/YY HH:mm')}
                         </Typography>
                       </Grid>
                     </Grid>
