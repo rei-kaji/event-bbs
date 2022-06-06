@@ -46,7 +46,7 @@ theme.typography.body2 = {
 
 function Cards(props) {
   const classes = useStyles();
-  let date = dayjs(props?.EventDetail?.lastUpdate.toDate());
+  let date = dayjs(props?.EventDetail?.lastUpdate?.toDate());
   let attendeesCount = 0
   let beforeTwoHour = dayjs().add(-2,'h');
 
