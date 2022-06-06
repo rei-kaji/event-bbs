@@ -10,6 +10,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import { makeStyles } from '@material-ui/core/styles';
+import dayjs from 'dayjs';
 
 const useStyles = makeStyles(() => ({
   wrapIcon: {
@@ -42,6 +43,8 @@ theme.typography.body2 = {
 
 function Cards(props) {
   const classes = useStyles();
+  let date = dayjs(props?.EventDetail?.lastUpdate.toDate()).format('DD/MM/YY HH:mm');
+  // console.log(date);
 
   return (
     <ThemeProvider theme={theme}>
@@ -101,7 +104,7 @@ function Cards(props) {
                           Last updated :
                         </Typography>
                         <Typography variant='body2' color='text.secondary'>
-                          {props?.lastUpdate}
+                          {date}
                         </Typography>
                       </Grid>
                     </Grid>
