@@ -14,6 +14,9 @@ import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+
+dayjs.extend(isSameOrAfter);
 
 const useStyles = makeStyles(() => ({
   wrapIcon: {
@@ -50,7 +53,14 @@ function Events(props) {
   return (
     <ThemeProvider theme={theme}>
       {props.dbData.map((event, index) => {
-        let date = dayjs(event.lastUpdate.toDate()).format('DD/MM/YY HH:mm');
+        let attendeesCount = 0
+        let date = dayjs(event.lastUpdate.toDate());
+        let beforeTwoHour = dayjs().add(-2,'h');
+
+        if(date.isSameOrAfter(beforeTwoHour)){
+          attendeesCount = event.attendees;
+        }
+        
         return (
           <Link
             to={`/detail/${index}`}
@@ -89,7 +99,7 @@ function Events(props) {
                           </Grid>
                           <Grid item xs={6}>
                             <Typography variant='h3'>
-                              Attendees {event.attendees}
+                              Attendees {attendeesCount}
                             </Typography>
                           </Grid>
                           <Grid item xs={6}>
@@ -107,7 +117,7 @@ function Events(props) {
                               Last updated :
                             </Typography>
                             <Typography variant='body2' color='text.secondary'>
-                              {date}
+                              {date.format('DD/MM/YY HH:mm')}
                             </Typography>
                           </Grid>
                         </Grid>
