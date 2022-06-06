@@ -46,7 +46,7 @@ function Cards(props) {
   return (
     <ThemeProvider theme={theme}>
       <a
-        href={props.EventDetail.addressLink}
+        href={props?.EventDetail?.addressLink}
         target='_blank'
         rel='noopener noreferrer'
         style={{ textDecoration: 'none' }}
@@ -60,12 +60,12 @@ function Cards(props) {
                   paragraph={true}
                   variant='h3'
                 >
-                  {props.EventDetail.eventName}
+                  {props?.EventDetail?.eventName}
                 </Typography>
                 <CardMedia
                   component='img'
                   height='140'
-                  image={props.img}
+                  image={props?.EventDetail?.img}
                   alt='green iguana'
                 />
                 <CardContent>
@@ -78,12 +78,12 @@ function Cards(props) {
                           className={classes.wrapIcon}
                         >
                           <LocationOnIcon sx={{ mr: '1rem' }} />
-                          {props.EventDetail.address}
+                          {props?.EventDetail?.address}
                         </Typography>
                       </Grid>
                       <Grid item xs={6}>
                         <Typography variant='h3'>
-                          Attendees {props.EventDetail.attendees}
+                          Attendees {props?.EventDetail?.attendees}
                         </Typography>
                       </Grid>
                       <Grid item xs={6}>
@@ -93,7 +93,7 @@ function Cards(props) {
                           className={classes.wrapIcon}
                         >
                           <SportsSoccerIcon sx={{ mr: '1rem' }} />
-                          {props.EventDetail.jenre}
+                          {props?.EventDetail?.jenre}
                         </Typography>
                       </Grid>
                       <Grid item xs={6}>
@@ -101,7 +101,7 @@ function Cards(props) {
                           Last updated :
                         </Typography>
                         <Typography variant='body2' color='text.secondary'>
-                          {props.lastUpdate}
+                          {props?.lastUpdate}
                         </Typography>
                       </Grid>
                     </Grid>
