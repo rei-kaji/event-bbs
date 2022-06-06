@@ -13,6 +13,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import dayjs from 'dayjs';
 
 const useStyles = makeStyles(() => ({
   wrapIcon: {
@@ -49,6 +50,7 @@ function Events(props) {
   return (
     <ThemeProvider theme={theme}>
       {props.dbData.map((event, index) => {
+        let date = dayjs(event.lastUpdate.toDate()).format('DD/MM/YY HH:mm');
         return (
           <Link
             to={`/detail/${index}`}
@@ -105,7 +107,7 @@ function Events(props) {
                               Last updated :
                             </Typography>
                             <Typography variant='body2' color='text.secondary'>
-                              {/* {event.lastUpdate} */}
+                              {date}
                             </Typography>
                           </Grid>
                         </Grid>
