@@ -14,6 +14,7 @@ import Cards from '../Cards/Cards';
 import { useParams, useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
 import { doc, updateDoc, serverTimestamp } from 'firebase/firestore';
+import Spinner from '../Spinner/Spinner';
 
 const useStyles = makeStyles(() => ({
   wrapIcon: {
@@ -59,75 +60,85 @@ function Detail(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Cards EventDetail={event} />
-      <Explanation explanation={event.explanation} />
-      <Container maxWidth='sx'>
-        <Box sx={{ height: 'auto', m: 2 }}>
-          <Card>
-            <CardContent>
-              <Grid container spacing={2}>
-                <Grid item xs={8}>
-                  <Typography
-                    variant='h3'
-                    component='div'
-                    className={classes.wrapIcon}
-                    lineHeight={3}
-                  >
-                    We're now...
-                  </Typography>
-                </Grid>
-                <Grid item xs={4}>
-                  <TextField
-                    id='filled-number'
-                    label='people'
-                    type='number'
-                    value={count}
-                    onChange={(e) => {
-                      setCount(e.target.value);
-                    }}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
-                    variant='filled'
-                  />
-                </Grid>
-              </Grid>
-            </CardContent>
-          </Card>
-        </Box>
-      </Container>
-      <Container sx={{ alignItems: 'center' }}>
-        <Grid
-          container
-          spacing={0}
-          direction='column'
-          alignItems='center'
-          justifyContent='center'
-        >
-          <Button
-            variant='contained'
-            style={{
-              maxWidth: '200px',
-              minWidth: '200px',
-              backgroundColor: '#AE303A',
-            }}
-            // Update attendees count of firestore
-            onClick={() => {
-              if (count === '') {
-                // This second paramater should change to 'props.documentId'.
-                updateEvent(0, event.id.toString());
-                navigate('/');
-              } else {
-                // This second paramater should change to 'props.documentId'.
-                updateEvent(count, event.id.toString());
-                navigate('/');
-              }
-            }}
-          >
-            Update
-          </Button>
-        </Grid>
-      </Container>
+      {event ? (
+        <>
+          <Cards EventDetail={event} />
+          <Explanation explanation={event?.explanation} />
+          <Container maxWidth='sx'>
+            <Box sx={{ height: 'auto', m: 2 }}>
+              <Card>
+                <CardContent>
+                  <Grid container spacing={2}>
+                    <Grid item xs={8}>
+                      <Typography
+                        variant='h3'
+                        component='div'
+                        className={classes.wrapIcon}
+                        lineHeight={3}
+                      >
+                        We're now...
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={4}>
+                      <TextField
+                        id='filled-number'
+                        label='people'
+                        type='number'
+                        value={count}
+                        onChange={(e) => {
+                          setCount(e.target.value);
+                        }}
+                        InputLabelProps={{
+                          shrink: true,
+                        }}
+                        variant='filled'
+                      />
+                    </Grid>
+                  </Grid>
+                </CardContent>
+              </Card>
+            </Box>
+          </Container>
+          <Container sx={{ alignItems: 'center' }}>
+            <Grid
+              container
+              spacing={0}
+              direction='column'
+              alignItems='center'
+              justifyContent='center'
+            >
+              <Button
+                variant='contained'
+                style={{
+                  maxWidth: '200px',
+                  minWidth: '200px',
+                  backgroundColor: '#AE303A',
+                }}
+                // Update attendees count of firestore
+                onClick={() => {
+                  if (count === '') {
+                    // This second paramater should change to 'props.documentId'.
+                    updateEvent(0, event?.id.toString());
+                    navigate('/');
+                  } else {
+                    // This second paramater should change to 'props.documentId'.
+                    updateEvent(count, event?.id.toString());
+                    navigate('/');
+                  }
+                }}
+              >
+                Update
+              </Button>
+            </Grid>
+          </Container>
+        </>
+      ) : (
+        <Container maxWidth='sx'>
+          <Box sx={{ height: 'auto', m: 4 }}>
+            <Spinner />
+          </Box>
+        </Container>
+      )}
     </ThemeProvider>
   );
 }
