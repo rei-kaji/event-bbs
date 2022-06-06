@@ -117,7 +117,7 @@ function Events(props) {
                               Last updated :
                             </Typography>
                             <Typography variant='body2' color='text.secondary'>
-                              {date.format('DD/MM/YY HH:mm')}
+                              {date.format('DD/MMMM/YY HH:mm')}
                             </Typography>
                           </Grid>
                         </Grid>
