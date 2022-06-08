@@ -1,4 +1,4 @@
-import React from 'react';
+eimport React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -60,7 +60,7 @@ function Events(props) {
         const imageId = event?.id;
 
         if(date.isSameOrAfter(beforeTwoHour)){
-          attendeesCount = props?.EventDetail?.attendees;
+          attendeesCount = event?.attendees;
         }
 
         // Create a reference to the file we want to download
