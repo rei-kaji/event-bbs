@@ -60,7 +60,7 @@ function Events(props) {
         const imageId = event?.id;
 
         if(date.isSameOrAfter(beforeTwoHour)){
-          attendeesCount = event.attendees;
+          attendeesCount = props?.EventDetail?.attendees;
         }
 
         // Create a reference to the file we want to download
@@ -71,8 +71,7 @@ function Events(props) {
           .then((url) => {
             const img = document.getElementById(imageId);
             img.setAttribute('src', url);
-          })
-          .catch((error) => {
+          }).catch((error) => {
             // A full list of error codes is available at
             // https://firebase.google.com/docs/storage/web/handle-errors
             switch (error.code) {
@@ -92,10 +91,6 @@ function Events(props) {
                 console.log("Unexpected error happend");
             }
           });
-
-        if(date.isSameOrAfter(beforeTwoHour)){
-          attendeesCount = props?.EventDetail?.attendees;
-        }
         
         return (
           <Link

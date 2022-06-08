@@ -50,6 +50,11 @@ function Cards(props) {
   let date = dayjs(props?.EventDetail?.lastUpdate?.toDate());
   let attendeesCount = 0
   let beforeTwoHour = dayjs().add(-2,'h');
+
+  if(date.isSameOrAfter(beforeTwoHour)){
+    attendeesCount = props?.EventDetail?.attendees;
+  }
+
   const imageId = props?.EventDetail?.id;
   // Create a reference to the file we want to download
   const storage = getStorage();
@@ -59,8 +64,7 @@ function Cards(props) {
     .then((url) => {
       const img = document.getElementById(imageId);
       img.setAttribute('src', url);
-    })
-    .catch((error) => {
+    }).catch((error) => {
       // A full list of error codes is available at
       // https://firebase.google.com/docs/storage/web/handle-errors
       switch (error.code) {
@@ -80,10 +84,6 @@ function Cards(props) {
           console.log("Unexpected error happend");
       }
     });
-
-  if(date.isSameOrAfter(beforeTwoHour)){
-    attendeesCount = props?.EventDetail?.attendees;
-  }
 
   return (
     <ThemeProvider theme={theme}>
