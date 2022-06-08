@@ -12,6 +12,7 @@ import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import { makeStyles } from '@material-ui/core/styles';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 dayjs.extend(isSameOrAfter);
 
@@ -49,6 +50,36 @@ function Cards(props) {
   let date = dayjs(props?.EventDetail?.lastUpdate?.toDate());
   let attendeesCount = 0
   let beforeTwoHour = dayjs().add(-2,'h');
+  const imageId = props?.EventDetail?.id;
+  // Create a reference to the file we want to download
+  const storage = getStorage();
+  const starsRef = ref(storage, `${imageId}.jpeg`);
+
+  getDownloadURL(starsRef)
+    .then((url) => {
+      const img = document.getElementById(imageId);
+      img.setAttribute('src', url);
+    })
+    .catch((error) => {
+      // A full list of error codes is available at
+      // https://firebase.google.com/docs/storage/web/handle-errors
+      switch (error.code) {
+        case 'storage/object-not-found':
+          console.log("File doesn't exist");
+          break;
+        case 'storage/unauthorized':
+          console.log("User doesn't have permission to access the object");
+          break;
+        case 'storage/canceled':
+          console.log("User canceled the upload");
+          break;
+        case 'storage/unknown':
+          console.log("Unknown error occurred, inspect the server response");
+          break;
+        default:
+          console.log("Unexpected error happend");
+      }
+    });
 
   if(date.isSameOrAfter(beforeTwoHour)){
     attendeesCount = props?.EventDetail?.attendees;
@@ -74,9 +105,9 @@ function Cards(props) {
                   {props?.EventDetail?.eventName}
                 </Typography>
                 <CardMedia
+                  id={imageId}
                   component='img'
                   height='140'
-                  image={props?.EventDetail?.img}
                   alt='green iguana'
                 />
                 <CardContent>

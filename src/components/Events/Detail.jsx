@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Explanation from '../Explanation.jsx';
 import Cards from '../Cards/Cards';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { db } from '../../firebase';
 import { doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import Spinner from '../Spinner/Spinner';
@@ -49,7 +49,6 @@ function Detail(props) {
   const classes = useStyles();
   const { id } = useParams();
   const [event, setEvent] = useState('');
-  const navigate = useNavigate();
   let [count, setCount] = useState(0);
 
   useEffect(() => {
