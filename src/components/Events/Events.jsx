@@ -60,7 +60,7 @@ function Events(props) {
         const imageId = event?.id;
 
         if(date.isSameOrAfter(beforeTwoHour)){
-          attendeesCount = props?.EventDetail?.attendees;
+          attendeesCount = event?.attendees;
         }
 
         // Create a reference to the file we want to download
