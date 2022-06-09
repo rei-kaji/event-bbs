@@ -53,14 +53,14 @@ function Events(props) {
   return (
     <ThemeProvider theme={theme}>
       {props.dbData.map((event, index) => {
-        let attendeesCount = 0
-        let date = dayjs(event.lastUpdate.toDate());
-        let beforeTwoHour = dayjs().add(-2,'h');
+        let attendeesCount = 0;
+        let date = dayjs(event?.lastUpdate?.toDate());
+        let beforeTwoHour = dayjs().add(-2, 'h');
 
-        if(date.isSameOrAfter(beforeTwoHour)){
-          attendeesCount = event.attendees;
+        if (date.isSameOrAfter(beforeTwoHour)) {
+          attendeesCount = event?.attendees;
         }
-        
+
         return (
           <Link
             to={`/detail/${index}`}
