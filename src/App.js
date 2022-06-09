@@ -4,7 +4,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/Pages/Home';
 import Detail from './components/Events/Detail';
-import { EventDataList } from './components/EventsData/EventDataList';
 import { db } from './firebase';
 import { useState, useEffect } from 'react';
 import { collection, getDocs, query, onSnapshot } from 'firebase/firestore';
@@ -33,7 +32,7 @@ function App() {
         <Route index element={<Home dbData={posts} />} />
         <Route
           path='/detail/:id'
-          element={<Detail EventDataList={EventDataList} dbData={posts} />}
+          element={<Detail dbData={posts} />}
         />
       </Routes>
     </div>
