@@ -11,6 +11,7 @@ import { collection, getDocs, query, onSnapshot } from 'firebase/firestore';
 function App() {
   const [posts, setPosts] = useState([]);
 
+  // Getting data from firebase
   useEffect(() => {
     const postData = collection(db, 'number1');
     // const q = query(postData);
@@ -18,7 +19,7 @@ function App() {
       setPosts(snapShot.docs.map((doc) => doc.data({ ...doc.data })));
     });
 
-    /* リアルタイムで取得 */
+    /* Getting data on realtime */
     onSnapshot(query(postData), (posts) => {
       setPosts(posts.docs.map((doc) => ({ ...doc.data() })));
     });
