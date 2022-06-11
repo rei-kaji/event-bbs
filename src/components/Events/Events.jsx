@@ -15,6 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 dayjs.extend(isSameOrAfter);
 
@@ -56,10 +57,45 @@ function Events(props) {
         let attendeesCount = 0;
         let date = dayjs(event?.lastUpdate?.toDate());
         let beforeTwoHour = dayjs().add(-2, 'h');
+        const imageId = event?.id;
 
         if (date.isSameOrAfter(beforeTwoHour)) {
           attendeesCount = event?.attendees;
         }
+
+        // Create a reference to the file we want to download
+        const storage = getStorage();
+        const starsRef = ref(storage, `${imageId}.jpeg`);
+
+        getDownloadURL(starsRef)
+          .then((url) => {
+            const img = document.getElementById(imageId);
+            img.setAttribute('src', url);
+          })
+          .catch((error) => {
+            // A full list of error codes is available at
+            // https://firebase.google.com/docs/storage/web/handle-errors
+            switch (error.code) {
+              case 'storage/object-not-found':
+                console.log("File doesn't exist");
+                break;
+              case 'storage/unauthorized':
+                console.log(
+                  "User doesn't have permission to access the object"
+                );
+                break;
+              case 'storage/canceled':
+                console.log('User canceled the upload');
+                break;
+              case 'storage/unknown':
+                console.log(
+                  'Unknown error occurred, inspect the server response'
+                );
+                break;
+              default:
+                console.log('Unexpected error happend');
+            }
+          });
 
         return (
           <Link
@@ -79,9 +115,9 @@ function Events(props) {
                       {event.eventName}
                     </Typography>
                     <CardMedia
+                      id={imageId}
                       component='img'
                       height='140'
-                      image={event.img}
                       alt=''
                     />
                     <CardContent>
@@ -117,7 +153,7 @@ function Events(props) {
                               Last updated :
                             </Typography>
                             <Typography variant='body2' color='text.secondary'>
-                              {date.format('DD/MM/YY HH:mm')}
+                              {date.format('DD/MMMM/YY HH:mm')}
                             </Typography>
                           </Grid>
                         </Grid>
