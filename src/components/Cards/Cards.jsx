@@ -12,7 +12,7 @@ import SportsSoccerIcon from '@mui/icons-material/SportsSoccer';
 import { makeStyles } from '@material-ui/core/styles';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 dayjs.extend(isSameOrAfter);
 
@@ -46,12 +46,13 @@ theme.typography.body2 = {
 };
 
 function Cards(props) {
+  //update time calicualteing
   const classes = useStyles();
   let date = dayjs(props?.EventDetail?.lastUpdate?.toDate());
-  let attendeesCount = 0
-  let beforeTwoHour = dayjs().add(-2,'h');
+  let attendeesCount = 0;
+  let beforeTwoHour = dayjs().add(-2, 'h');
 
-  if(date.isSameOrAfter(beforeTwoHour)){
+  if (date.isSameOrAfter(beforeTwoHour)) {
     attendeesCount = props?.EventDetail?.attendees;
   }
 
@@ -64,7 +65,8 @@ function Cards(props) {
     .then((url) => {
       const img = document.getElementById(imageId);
       img.setAttribute('src', url);
-    }).catch((error) => {
+    })
+    .catch((error) => {
       // A full list of error codes is available at
       // https://firebase.google.com/docs/storage/web/handle-errors
       switch (error.code) {
@@ -75,13 +77,13 @@ function Cards(props) {
           console.log("User doesn't have permission to access the object");
           break;
         case 'storage/canceled':
-          console.log("User canceled the upload");
+          console.log('User canceled the upload');
           break;
         case 'storage/unknown':
-          console.log("Unknown error occurred, inspect the server response");
+          console.log('Unknown error occurred, inspect the server response');
           break;
         default:
-          console.log("Unexpected error happend");
+          console.log('Unexpected error happend');
       }
     });
 

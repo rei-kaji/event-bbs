@@ -15,7 +15,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
-import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import { getStorage, ref, getDownloadURL } from 'firebase/storage';
 
 dayjs.extend(isSameOrAfter);
 
@@ -54,12 +54,12 @@ function Events(props) {
   return (
     <ThemeProvider theme={theme}>
       {props.dbData.map((event, index) => {
-        let attendeesCount = 0
+        let attendeesCount = 0;
         let date = dayjs(event?.lastUpdate?.toDate());
-        let beforeTwoHour = dayjs().add(-2,'h');
+        let beforeTwoHour = dayjs().add(-2, 'h');
         const imageId = event?.id;
 
-        if(date.isSameOrAfter(beforeTwoHour)){
+        if (date.isSameOrAfter(beforeTwoHour)) {
           attendeesCount = event?.attendees;
         }
 
@@ -71,7 +71,8 @@ function Events(props) {
           .then((url) => {
             const img = document.getElementById(imageId);
             img.setAttribute('src', url);
-          }).catch((error) => {
+          })
+          .catch((error) => {
             // A full list of error codes is available at
             // https://firebase.google.com/docs/storage/web/handle-errors
             switch (error.code) {
@@ -79,19 +80,23 @@ function Events(props) {
                 console.log("File doesn't exist");
                 break;
               case 'storage/unauthorized':
-                console.log("User doesn't have permission to access the object");
+                console.log(
+                  "User doesn't have permission to access the object"
+                );
                 break;
               case 'storage/canceled':
-                console.log("User canceled the upload");
+                console.log('User canceled the upload');
                 break;
               case 'storage/unknown':
-                console.log("Unknown error occurred, inspect the server response");
+                console.log(
+                  'Unknown error occurred, inspect the server response'
+                );
                 break;
               default:
-                console.log("Unexpected error happend");
+                console.log('Unexpected error happend');
             }
           });
-        
+
         return (
           <Link
             to={`/detail/${index}`}

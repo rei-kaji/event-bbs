@@ -65,6 +65,7 @@ function Detail(props) {
 
   return (
     <ThemeProvider theme={theme}>
+      {/* loading spinner display condition*/}
       {event ? (
         <>
           <Cards EventDetail={event} />
@@ -137,6 +138,7 @@ function Detail(props) {
           </Container>
         </>
       ) : (
+        // display spinner while fetching data from DB
         <Container maxWidth='sx'>
           <Box sx={{ height: 'auto', m: 4 }}>
             <Spinner />
