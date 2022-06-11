@@ -17,6 +17,7 @@ import { doc, updateDoc, serverTimestamp } from 'firebase/firestore';
 import Spinner from '../Spinner/Spinner';
 import { Link } from 'react-router-dom';
 
+// To use the useStles
 const useStyles = makeStyles(() => ({
   wrapIcon: {
     alignItems: 'center',
@@ -24,8 +25,10 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+// To use the theme
 const theme = createTheme();
 
+// Theme setting
 theme.typography.h3 = {
   fontSize: '1rem',
   '@media (min-width:600px)': {
@@ -36,6 +39,7 @@ theme.typography.h3 = {
   },
 };
 
+// Update function of attendees count of firebase
 function updateEvent(countNumber, documentId) {
   const washingtonRef = doc(db, 'number1', documentId);
 
@@ -52,6 +56,7 @@ function Detail(props) {
   let [count, setCount] = useState(0);
 
   useEffect(() => {
+    // Picking up the data of this event
     const res = props.dbData.filter((event) => {
       return event.id === Number(id);
     });
@@ -85,6 +90,7 @@ function Detail(props) {
                         label='people'
                         type='number'
                         value={count}
+                        // Setting the number that user input
                         onChange={(e) => {
                           setCount(e.target.value);
                         }}
@@ -116,7 +122,7 @@ function Detail(props) {
                   minWidth: '200px',
                   backgroundColor: '#AE303A',
                 }}
-                // Update attendees count of firestore
+                // Calling updateEvent function
                 onClick={() => {
                   if (count === 0) {
                     updateEvent(0, event?.id.toString());
