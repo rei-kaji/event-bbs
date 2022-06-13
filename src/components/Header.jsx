@@ -25,7 +25,7 @@ export default function Header() {
             </Link>
           </Typography>
           <a
-            href='mailto:sample@sample.com'
+            href='eventbbs.ca@gmail.com'
             style={{ textDecoration: 'none', color: 'white' }}
           >
             <Button color='inherit'>Contact</Button>
